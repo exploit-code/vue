@@ -3,9 +3,9 @@
     <div class="calc-result">{{result}}</div>
     <div class="calc-input-box">
       <label class="calc-input-title" for="number-one">Number 1</label>
-      <input class="calc-input calc-number--one" id="number-one" v-model="numberOne" type="number">
+      <input class="calc-input calc-number--one" id="number-one" v-model.number="numberOne" type="number">
       <label class="calc-input-title" for="number-two">Number 2</label>
-      <input class="calc-input calc-number--two" id="number-two" v-model="numberTwo" type="number">
+      <input class="calc-input calc-number--two" id="number-two" v-model.number="numberTwo" type="number">
     </div>
     <div class="calc-button-box">
       <button class="calc-button" @click="sum">+</button>
@@ -24,8 +24,8 @@ export default {
   props: {
   },
   data: () => ({
-    numberOne: Number('0'),
-    numberTwo: Number('0'),
+    numberOne: 0,
+    numberTwo: 0,
     result: 0
   }),
   methods: {
