@@ -86,11 +86,11 @@ export default {
       }
     },
     inputPrint (number) {
-      if ((this.entryField) === '1') this.numberOne = +(this.numberOne + number)
+      if (this.entryField === '1') this.numberOne = +(this.numberOne + number)
       else this.numberTwo = +(this.numberTwo + number)
     },
     inputDel () {
-      if ((this.entryField) === '1') {
+      if (this.entryField === '1') {
         const newNumber = this.delLastNumber(this.numberOne)
         if (newNumber !== null) {
           this.numberOne = newNumber
