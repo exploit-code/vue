@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import GeekCalculator from '@/components/Calculator.vue';
+import GeekCalculator from '@/components/Calculator.vue'
 
 export default {
     name: 'GeekHome',

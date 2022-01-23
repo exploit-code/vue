@@ -8,7 +8,7 @@
             </thead>
             <tbody>
                 <tr v-for="(item, ind) in displayItems" :key="ind">
-                    <td>{{ ind+1 }}</td>
+                    <td>{{ item.id }}</td>
                     <td>{{ item.date }}</td>
                     <td>{{ item.category }}</td>
                     <td>{{ item.value }}</td>
@@ -20,13 +20,12 @@
             :numPage="numPage"
             :recordCount="displayRecordCount"
             :itemsCount="itemsLength"
-            @selectPage="changeNumPage"
-        />
+            @selectPage="changeNumPage"/>
     </div>
 </template>
 
 <script>
-import CostPagination from '@/components/costs/Pagination.vue';
+import CostPagination from '@/components/costs/Pagination.vue'
 
 export default {
     name: 'CostPaymentsDisplay',
@@ -50,13 +49,13 @@ export default {
         displayItems() {
             const start = (this.numPage-1) * this.displayRecordCount
             const end = start + this.displayRecordCount;
-            const displayRecords = this.items.slice(start, end+1);
-            return displayRecords;
+            const displayRecords = this.items.slice(start, end)
+            return displayRecords
         }
     },
     methods: {
         changeNumPage(n) {
-            this.numPage = n;
+            this.numPage = n
         }
     },
     components: {
@@ -65,12 +64,10 @@ export default {
 }
 </script>
 
-
 <style lang="scss" scoped>
 .main-table {
   border-collapse: collapse;
 }
-
 td { 
     padding: 10px 20px;
     border: 1px solid black;

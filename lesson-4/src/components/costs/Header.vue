@@ -3,7 +3,6 @@
         <div class="wrapper">
             <h2>{{ caption }}</h2>
         </div>
-        <br/>
     </header>
 </template>
 
@@ -12,15 +11,14 @@ export default {
     name: 'CostHeader',
     data() {
         return {
-            caption: 'My Personal Costs'
+            caption: 'My App'
         }
     }
 }
 </script>
 
-
 <style lang="scss" scoped>
 .wrapper {
-    color: red;
+    color: #2c3e50;
 }
 </style>

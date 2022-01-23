@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import GeekCalculator from '@/components/Calculator.vue';
+import GeekCalculator from '@/components/Calculator.vue'
 
 export default {
     name: 'GeekCalc',
@@ -15,7 +15,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .home{
     display: flex;
     justify-content: center;

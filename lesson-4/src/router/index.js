@@ -1,8 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import GeekPaypents from '@/views/Payments.vue'
-import GeekCalc from '@/views/Calc.vue'
-import GeekAbout from '@/views/About.vue'
 
 Vue.use(VueRouter);
 
@@ -10,21 +7,36 @@ const routes = [
     {
         path: '/',
         name: 'payments',
-        component: GeekPaypents
+        component: () => import('@/views/Payments.vue')
     },
     {
         path: '/calc',
         name: 'calc',
-        component: GeekCalc
+        component: () => import('@/views/Calc.vue')
     },
     {
         path: '/about',
         name: 'about',
-        component: GeekAbout
+        component: () => import('@/views/About.vue')
+    },
+    {
+        path: '/add/payment',
+        name: 'addPayment',
+        component: () => import('@/views/AddPaymentForm.vue')
+    },
+    {
+        path: '/add/payment/:cat',
+        name: 'addPaymentWithCat',
+        component: () => import('@/views/AddPaymentForm.vue')
+    },
+    {
+        path: '/add/payment/:cat',
+        name: 'addPaymentWithCat',
+        component: () => import('@/views/AddPaymentForm.vue')
     }
 ];
 
-const router = new VueRouter({
+const router = new VueRouter({    //base: process.env.BASE_URL,
     routes
 });
 

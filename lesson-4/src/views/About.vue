@@ -1,11 +1,11 @@
 <template>
-    <div class="about">
-        <h1>GeekBrains lesson-4.</h1>
-    </div>
+  <div class="about">
+    <h1>lesson-5</h1>
+  </div>
 </template>
 
 <script>
 export default {
-    name: 'GeekAbout'
-}
+  name: "GeekAbout",
+};
 </script>

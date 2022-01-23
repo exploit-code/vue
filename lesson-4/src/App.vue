@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <div id="nav">
-            <router-link :to="{name: 'payments'}">Home</router-link> |
+            <router-link :to="{name: 'payments'}">Payments</router-link> |
             <router-link :to="{name: 'calc'}">Calculator</router-link> |
             <router-link :to="{name: 'about'}">About</router-link>
         </div>
@@ -20,13 +20,11 @@
 
 #nav {
     padding: 30px;
-
     a {
         font-weight: bold;
         color: #2c3e50;
-
         &.router-link-exact-active {
-            color: darkslategray;
+            color: #42b983;
         }
     }
 }

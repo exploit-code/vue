@@ -1,6 +1,9 @@
 <template>
     <div>
-        <button  class="my-btn" :disabled="numPage === 1" @click="changeAtOne('back')">&laquo;</button>
+        <button
+            class="my-btn"
+            :disabled="numPage === 1"
+            @click="changeAtOne('back')">&laquo;</button>
         <button
             v-for="n in buttonsCount"
             :class="{'my-btn': true, 'active-btn': n === numPage}"
@@ -32,41 +35,39 @@ export default {
     },
     computed: {
         buttonsCount() {
-            let count = Math.floor(this.itemsCount / this.recordCount);
-            const extra = this.itemsCount % this.recordCount;
+            let count = Math.floor(this.itemsCount / this.recordCount)
+            const extra = this.itemsCount % this.recordCount
             if (extra > 0) {
-                count = count + 1;
+                count = count + 1
             }
-            return count;
+            return count
         }
     },
     methods: {
         changePage(n) {
-            this.$emit('selectPage', n);
+            this.$emit('selectPage', n)
         },
         changeAtOne(direction) {
             if ((direction === 'back') && (this.numPage > 1)) {
-                this.$emit('selectPage', this.numPage-1);
-                return;
+                this.$emit('selectPage', this.numPage-1)
+                return
             }
             if ((direction === 'forward') && (this.numPage < this.buttonsCount)) {
-                this.$emit('selectPage', this.numPage+1);
-                return;
+                this.$emit('selectPage', this.numPage+1)
+                return
             }
         }
     }
 }
 </script>
 
-
 <style lang="scss" scoped>
 .my-btn {
     margin: 0 5px;
     padding: 5px 10px;
 }
-
 .active-btn {
-    color: blue;
+    color: #2c3e50;
     text-decoration: underline;
 }
 </style>
