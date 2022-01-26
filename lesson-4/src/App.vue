@@ -6,8 +6,40 @@
             <router-link :to="{name: 'about'}">About</router-link>
         </div>
         <router-view/>
+        <transition name="fade">
+            <context-menu v-if="menuName" :params="menuParams" />
+        </transition>
     </div>
 </template>
+
+<script>
+export default {
+    name: "App",
+    data() {
+        return {
+            menuName: '',
+            menuParams: {}
+        }
+    },
+    methods: {
+        onShown(args) {
+            this.menuName = args.name;
+            this.menuParams = args.params;
+        },
+        onHide() {
+            this.menuName = '';
+            this.menuParams = {};
+        }
+    },
+    components: {
+        ContextMenu: () => import('./components/costs/ContextMenu.vue')
+    },
+    mounted() {
+        this.$menu.EventBus.$on("shown", this.onShown);
+        this.$menu.EventBus.$on("hiden", this.onHide);
+    }
+}
+</script>
 
 <style lang="scss">
 #app {

@@ -12,6 +12,7 @@
                     <td>{{ item.date }}</td>
                     <td>{{ item.category }}</td>
                     <td>{{ item.value }}</td>
+                    <td><span class="span-link" @click="showContextMenu($event, item)">...</span></td>
                 </tr>
             </tbody>
         </table>
@@ -56,6 +57,14 @@ export default {
     methods: {
         changeNumPage(n) {
             this.numPage = n
+        },
+        showContextMenu(ev, record) {
+            this.$menu.show('contextMenu', {
+                header: 'RecordID:',
+                item: record,
+                left: ev.target.getBoundingClientRect().left,
+                top: ev.target.getBoundingClientRect().top
+            });
         }
     },
     components: {
@@ -71,5 +80,8 @@ export default {
 td { 
     padding: 10px 20px;
     border: 1px solid black;
+}
+.span-link{
+    cursor: pointer;
 }
 </style>
