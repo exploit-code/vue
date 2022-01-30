@@ -28,13 +28,8 @@ const routes = [
         path: '/add/payment/:cat',
         name: 'addPaymentWithCat',
         component: () => import('@/views/AddPaymentForm.vue')
-    },
-    {
-        path: '/add/payment/:cat',
-        name: 'addPaymentWithCat',
-        component: () => import('@/views/AddPaymentForm.vue')
     }
-];
+]
 
 const router = new VueRouter({
     routes

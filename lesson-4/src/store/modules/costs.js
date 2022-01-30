@@ -1,11 +1,9 @@
-//
 const state = {
     paymentsList: [],
     categoryList: [],
     nextId: 0,
 };
 
-//
 const getters = {
     costsGetPaymentsList: (state) => {
         return state.paymentsList
