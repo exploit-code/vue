@@ -1,4 +1,4 @@
-# geek-vue
+# vue_app
 
 ## Project setup
 ```

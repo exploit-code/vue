@@ -1,17 +1,27 @@
 export default {
     install(Vue) {
-        if (this.instance) {
-            return;
+      if (this.installed) {
+        return
+      }
+      this.installed = true
+      this.caller = null
+
+      Vue.prototype.$contextMenu = {
+        EventBus: new Vue(),
+
+        show({event, items}) {
+          const caller = event.target
+          if (caller!==this.caller) {
+            this.caller = caller
+            this.EventBus.$emit('show',  { event, items})
+          } else {
+            this.hide ()
+          }
+        },
+        hide() {
+          this.caller = null
+          this.EventBus.$emit('hide')
         }
-        this.instance = true;
-        Vue.prototype.$menu = {
-            EventBus: new Vue(),
-            show(name, params) {
-                this.EventBus.$emit('shown', { name, params })
-            },
-            hide() {
-                this.EventBus.$emit('hiden')
-            }
-        }
+      }
     }
-}
+  }

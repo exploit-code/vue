@@ -1,63 +1,112 @@
 <template>
-    <div id="app">
-        <div id="nav">
-            <router-link :to="{name: 'payments'}">Payments</router-link> |
-            <router-link :to="{name: 'calc'}">Calculator</router-link> |
-            <router-link :to="{name: 'about'}">About</router-link>
-        </div>
-        <router-view/>
-        <transition name="fade">
-            <context-menu v-if="menuName" :params="menuParams" />
-        </transition>
-    </div>
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-app-bar
+          flat
+          color="blue"
+        >
+          <v-btn
+            plain
+            :ripple="false"
+            to="/dashboard"
+          >
+            Dashboard R
+          </v-btn>/
+          <v-btn
+            plain
+            :ripple="false"
+            to="/about"
+          >
+            About R
+          </v-btn>/
+          <v-btn
+            plain
+            :ripple="false"
+            to="/page404"
+          >
+            404 R
+          </v-btn>
+          /
+          <v-btn
+            plain
+            :ripple="false"
+            to="/payment"
+          >
+            New payment
+          </v-btn>
+          /
+          <v-btn
+            plain
+            :ripple="false"
+            to="/calc"
+          >
+            Calculator
+          </v-btn>
+          /
+        </v-app-bar>
+        <router-view />
+      </v-main>
+    </v-app>
+    <context-menu />
+  </div>
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+import ContextMenu from './components/ContextMenu/ContextMenu.vue';
+
 export default {
-    name: "App",
-    data() {
-        return {
-            menuName: '',
-            menuParams: {}
-        }
+  name: "App",
+  components: {
+    ContextMenu,
+  },
+  data() {
+    return {
+      page: "",
+      modalWindow: "",
+      modalHeader: "",
+      modalSettings: {}
+    };
+  },
+  mounted() {
+    this.$modal.EventBus.$on("show", this.onShown);
+    this.$modal.EventBus.$on("hide", this.onHide);
+    this.$store.dispatch("fetchData");
+  },
+  beforeDestroy() {
+    this.$modal.EventBus.$off("show", this.onShown);
+    this.$modal.EventBus.$off("hide", this.onHide);
+  },
+  methods: {
+    ...mapMutations(["setPaymentListData"]),
+    emitAction() {
+      this.addBtnIsShown = false;
     },
-    methods: {
-        onShown(args) {
-            this.menuName = args.name;
-            this.menuParams = args.params;
-        },
-        onHide() {
-            this.menuName = '';
-            this.menuParams = {};
-        }
+    addPayment(data) {
+      this.$store.commit("addDataToPaymentList", data);
     },
-    components: {
-        ContextMenu: () => import('./components/costs/ContextMenu.vue')
+    goTopage(pageName) {
+      this.$router.push({
+        name: pageName
+      });
     },
-    mounted() {
-        this.$menu.EventBus.$on("shown", this.onShown);
-        this.$menu.EventBus.$on("hiden", this.onHide);
+    onHide() {
+      this.ModalWindoW = "";
+      this.modalHeader = "";
+      this.modalSettings = {};
+    },
+    onShown(data) {
+      this.ModalWindoW = data.name;
+      this.modalHeader = data.headerName;
+      this.modalSettings = data.modalSettings;
     }
-}
+  }
+};
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-}
-
-#nav {
-    padding: 30px;
-    a {
-        font-weight: bold;
-        color: #2c3e50;
-        &.router-link-exact-active {
-            color: #42b983;
-        }
-    }
+  font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 </style>
